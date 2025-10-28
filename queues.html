@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teoría de Colas — Calculadora Amazónica</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="app-page">
+  <header class="topbar">
+    <a href="index.html" class="back">← Volver al inicio</a>
+    <h2>📊 Teoría de Colas</h2>
+  </header>
+
+  <section class="panel fade-in">
+    <p>
+      Calcula métricas para los modelos <strong>M/M/1, M/M/c, M/M/1/K</strong> y <strong>M/M/c/K</strong>.
+    </p>
+
+    <label>Modelo:</label>
+    <select id="modelo">
+      <option value="MM1">M/M/1</option>
+      <option value="MMc">M/M/c</option>
+      <option value="MM1K">M/M/1/K</option>
+      <option value="MMcK">M/M/c/K</option>
+    </select>
+
+    <label>Tasa de llegada (λ):</label>
+    <input id="lambda" type="number" placeholder="Clientes por unidad de tiempo">
+
+    <label>Tasa de servicio (μ):</label>
+    <input id="mu" type="number" placeholder="Clientes atendidos por unidad de tiempo">
+
+    <label>Servidores (c):</label>
+    <input id="c" type="number" value="1">
+
+    <label>Capacidad (K):</label>
+    <input id="K" type="number" value="10">
+
+    <button onclick="calcularColas()">Calcular métricas</button>
+
+    <div id="outputColas" class="output"></div>
+
+    <h3>📈 Gráfico de comportamiento</h3>
+    <canvas id="graficoColas" height="160"></canvas>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

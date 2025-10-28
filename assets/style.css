@@ -1,0 +1,158 @@
+:root {
+  --verde-selva: #2e7d32;
+  --verde-claro: #4caf50;
+  --turquesa: #009688;
+  --amarillo-sol: #fdd835;
+  --fondo: #e8f5e9;
+  --texto: #1b1b1b;
+  --sombra: rgba(0, 0, 0, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(145deg, #f1f8e9, #c8e6c9);
+  color: var(--texto);
+  min-height: 100vh;
+}
+
+/* === Inicio === */
+.home-container {
+  text-align: center;
+  margin: 5rem auto;
+  max-width: 900px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: var(--verde-selva);
+  margin-bottom: 1rem;
+}
+
+h1 span {
+  color: var(--turquesa);
+}
+
+.subtitle {
+  color: #333;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 20px;
+  width: 260px;
+  box-shadow: 0 6px 12px var(--sombra);
+  transition: all 0.3s;
+  text-decoration: none;
+  color: var(--texto);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 18px var(--sombra);
+}
+
+.card h2 {
+  color: var(--turquesa);
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  font-size: 0.9rem;
+}
+
+/* === App pages === */
+.topbar {
+  background: var(--verde-selva);
+  color: white;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.back {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.panel {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 12px var(--sombra);
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+textarea, input, select {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+button {
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.2rem;
+  background: var(--turquesa);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: var(--verde-claro);
+}
+
+.output {
+  background: #f1f8e9;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+
+.steady {
+  background: #e0f2f1;
+  padding: 1rem;
+  border-radius: 10px;
+  font-family: monospace;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}

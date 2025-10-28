@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadenas de Markov — Calculadora Amazónica</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="app-page">
+  <header class="topbar">
+    <a href="index.html" class="back">← Volver al inicio</a>
+    <h2>🧩 Cadenas de Markov</h2>
+  </header>
+
+  <section class="panel fade-in">
+    <p>
+      Introduce la <strong>matriz de transición</strong> y el <strong>vector inicial</strong>.
+      Ejemplo: matriz <code>[[0.7,0.3],[0.2,0.8]]</code>, vector <code>[1,0]</code>.
+    </p>
+
+    <label>Matriz de transición:</label>
+    <textarea id="matriz" rows="3" placeholder="Ej: [[0.7,0.3],[0.2,0.8]]"></textarea>
+
+    <label>Vector inicial:</label>
+    <input id="vector" placeholder="Ej: [1,0]">
+
+    <label>Número de pasos:</label>
+    <input id="pasos" type="number" value="10">
+
+    <button onclick="calcularMarkov()">Calcular evolución</button>
+
+    <div id="output" class="output"></div>
+
+    <h3>📈 Gráfico de evolución</h3>
+    <canvas id="graficoMarkov" height="160"></canvas>
+
+    <h3>🔁 Estado estacionario</h3>
+    <div id="steadyState" class="steady"></div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
