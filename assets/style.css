@@ -77,7 +77,7 @@ button {
   margin-top: 1.5rem;
   padding: 0.8rem 1.2rem;
   background: linear-gradient(90deg, var(--btn-start), var(--btn-end));
-  color: white;
+  color: rgb(255, 255, 255);
   border: none;
   border-radius: 10px;
   font-size: 1rem;
@@ -116,4 +116,83 @@ button:hover {
 
 @keyframes fadeIn {
   to { opacity: 1; }
+}
+
+/* --- Interfaz: disposición de tarjetas, animaciones y pulido --- */
+.cards {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+/* Entrada escalonada y ligero flotado continuo */
+.cards .card {
+  will-change: transform, opacity;
+  animation: floatIn 520ms cubic-bezier(.2,.9,.2,1) both, floatSlow 6s ease-in-out 600ms infinite;
+}
+
+/* Stagger de aparición por tarjeta (ajusta si hay más/menos) */
+.cards .card:nth-child(1) { animation-delay: 0.04s, 0.6s; }
+.cards .card:nth-child(2) { animation-delay: 0.10s, 0.6s; }
+.cards .card:nth-child(3) { animation-delay: 0.16s, 0.6s; }
+.cards .card:nth-child(4) { animation-delay: 0.22s, 0.6s; }
+.cards .card:nth-child(5) { animation-delay: 0.28s, 0.6s; }
+
+/* Sutil elevación interior y borde más vivo */
+.card {
+  border: 1px solid rgba(46,125,50,0.10);
+  backdrop-filter: blur(6px) saturate(1.04);
+}
+
+/* Iconos/emoji de título ligeramente grandes */
+.card h2 { display: flex; align-items: center; gap: .6rem; }
+
+/* Efecto glow y micro-interacción en botones */
+button {
+  position: relative;
+  overflow: hidden;
+}
+button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity .18s ease;
+  background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+}
+button:hover::after { opacity: 1; }
+button:active { transform: translateY(1px) scale(.995); }
+
+/* Header más moderno */
+.topbar {
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  backdrop-filter: blur(6px);
+}
+
+/* Output más vistoso */
+.output {
+  border-left: 4px solid rgba(46,125,50,0.14);
+  padding: 1rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(244,255,244,0.9));
+}
+
+/* Keyframes */
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(18px) scale(.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes floatSlow {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+/* Pequeños ajustes responsivos */
+@media (max-width: 720px) {
+  .cards { gap: 0.8rem; }
+  .card { width: 100%; border-radius: 14px; }
 }
