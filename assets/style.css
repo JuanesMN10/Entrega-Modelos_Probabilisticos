@@ -1,11 +1,13 @@
 :root {
-  --verde-selva: #2e7d32;
-  --verde-claro: #4caf50;
+  --verde-start: #2e7d32; /* verde oscuro */
+  --verde-end: #fdd835;   /* amarillo */
   --turquesa: #009688;
   --amarillo-sol: #fdd835;
-  --fondo: #e8f5e9;
+  --fondo: linear-gradient(145deg, #f1f8e9, #c8e6c9);
   --texto: #1b1b1b;
   --sombra: rgba(0, 0, 0, 0.15);
+  --btn-start: #ff3b3b; /* rojo */
+  --btn-end: #3b82ff;   /* azul */
 }
 
 * {
@@ -16,124 +18,83 @@
 }
 
 body {
-  background: linear-gradient(145deg, #f1f8e9, #c8e6c9);
+  background: var(--fondo);
   color: var(--texto);
   min-height: 100vh;
 }
 
-/* === Inicio === */
-.home-container {
-  text-align: center;
-  margin: 5rem auto;
-  max-width: 900px;
-}
-
+/* Título principal con texto en degradado */
 h1 {
   font-size: 2.5rem;
-  color: var(--verde-selva);
   margin-bottom: 1rem;
+  background: linear-gradient(90deg, var(--verde-start), var(--verde-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
 }
 
-h1 span {
-  color: var(--turquesa);
-}
-
-.subtitle {
-  color: #333;
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-}
-
-.cards {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 20px;
-  width: 260px;
-  box-shadow: 0 6px 12px var(--sombra);
-  transition: all 0.3s;
-  text-decoration: none;
-  color: var(--texto);
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 18px var(--sombra);
-}
-
-.card h2 {
-  color: var(--turquesa);
-  margin-bottom: 0.5rem;
-}
-
-.card p {
-  font-size: 0.9rem;
-}
-
-/* === App pages === */
+/* topbar con degradado verde→amarillo */
 .topbar {
-  background: var(--verde-selva);
+  background: linear-gradient(90deg, var(--verde-start), var(--verde-end));
   color: white;
   padding: 1rem;
   display: flex;
   align-items: center;
   gap: 1rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 
-.back {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.panel {
-  max-width: 800px;
-  margin: 2rem auto;
-  background: white;
-  padding: 2rem;
+/* tarjetas con sutil degradado y bordes redondeados más vivos */
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(232,245,233,0.85));
+  padding: 1.5rem;
   border-radius: 20px;
-  box-shadow: 0 6px 12px var(--sombra);
+  width: 260px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  text-decoration: none;
+  color: var(--texto);
+  border: 1px solid rgba(46,125,50,0.06);
 }
 
-label {
-  display: block;
-  margin-top: 1rem;
-  font-weight: 600;
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.12);
 }
 
-textarea, input, select {
-  width: 100%;
-  padding: 0.6rem;
-  margin-top: 0.3rem;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 1rem;
+/* encabezados de tarjeta con degradado de acento */
+.card h2 {
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, var(--turquesa), var(--verde-start));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
+/* botones con degradado rojo→azul */
 button {
   margin-top: 1.5rem;
   padding: 0.8rem 1.2rem;
-  background: var(--turquesa);
+  background: linear-gradient(90deg, var(--btn-start), var(--btn-end));
   color: white;
   border: none;
   border-radius: 10px;
   font-size: 1rem;
   cursor: pointer;
-  transition: 0.3s;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  box-shadow: 0 8px 18px rgba(59,130,246,0.12);
 }
 
 button:hover {
-  background: var(--verde-claro);
+  transform: translateY(-4px) scale(1.02);
+  filter: brightness(1.03);
+  box-shadow: 0 20px 40px rgba(59,130,246,0.14);
 }
 
+/* mantener contraste en zonas de salida */
 .output {
-  background: #f1f8e9;
+  background: linear-gradient(180deg, #f7fff7, #f1f8e9);
   padding: 1rem;
   margin-top: 1rem;
   border-radius: 10px;
