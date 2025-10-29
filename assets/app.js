@@ -113,7 +113,6 @@ function calcularMarkov() {
   const outEl = document.getElementById("output");
   const steadyEl = document.getElementById("steadyState");
   const canvas = document.getElementById("graficoMarkov");
-  const matrixContainer = document.getElementById("matrixTable");
 
   if (!outEl || !steadyEl || !canvas) {
     alert("Elementos de resultado de Markov no encontrados en la página.");
@@ -122,7 +121,6 @@ function calcularMarkov() {
 
   outEl.textContent = "Calculando...";
   steadyEl.textContent = "";
-  if (matrixContainer) matrixContainer.innerHTML = "";
 
   try {
     const matText = document.getElementById("matriz").value;
@@ -142,9 +140,6 @@ function calcularMarkov() {
     if (v0.size()[0] !== size) {
       throw new Error("El vector inicial debe tener la misma longitud que la matriz.");
     }
-
-    // Renderizar tabla de transición + estado inicial (antes de calcular secuencia)
-    renderTransitionTable(P, v0);
 
     // verificar filas suman ~1 (advertencia, no bloqueo)
     const rows = P.toArray();
