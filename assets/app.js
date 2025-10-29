@@ -6,16 +6,41 @@
 
 /* --------------------- Helpers de parsing y utilidades --------------------- */
 
+function expandFractionsInText(text) {
+  if (!text || typeof text !== 'string') return text;
+  // sustituye ocurrencias tipo 3/4 o  3.5/2  por su valor numérico usando math.evaluate si está disponible
+  try {
+    return text.replace(/(\d+(\.\d+)?\s*\/\s*\d+(\.\d+)?)/g, (m) => {
+      try {
+        // math.evaluate devuelve número (si math.js cargado)
+        if (typeof math !== 'undefined' && math && math.evaluate) {
+          const val = math.evaluate(m);
+          return String(+val);
+        }
+        // fallback simple
+        const parts = m.split('/');
+        return String(parseFloat(parts[0].trim()) / parseFloat(parts[1].trim()));
+      } catch (e) {
+        return m;
+      }
+    });
+  } catch (e) {
+    return text;
+  }
+}
+
 function parseMatrixFlexible(text) {
   if (!text || !text.trim()) throw new Error("Matriz vacía");
   text = text.trim();
 
-  // Intentar JSON (ej: [[0.7,0.3],[0.2,0.8]])
+  // primero expandir fracciones (p.e. "3/4")
+  const expanded = expandFractionsInText(text);
+
+  // Intentar JSON (ej: [[0.75,0.25],[0.2,0.8]])
   try {
-    if (text.startsWith("[") || text.startsWith("{")) {
-      const parsed = JSON.parse(text);
+    if (expanded.startsWith("[") || expanded.startsWith("{")) {
+      const parsed = JSON.parse(expanded);
       if (!Array.isArray(parsed) || !Array.isArray(parsed[0])) throw new Error("Formato JSON inválido para matriz");
-      // Validar números
       parsed.forEach((row, i) => {
         if (!Array.isArray(row)) throw new Error(`Fila ${i+1} no es array`);
         row.forEach((v, j) => { if (typeof v !== 'number' || isNaN(v)) throw new Error(`Valor inválido en fila ${i+1}, col ${j+1}`); });
@@ -23,15 +48,18 @@ function parseMatrixFlexible(text) {
       return math.matrix(parsed);
     }
   } catch (e) {
-    // continuar a next format
+    // continuar a siguiente formato si JSON falla
   }
 
-  // Formato "a,b;c,d"
-  const rows = text.split(";").map(r => r.trim()).filter(Boolean);
+  // Formato "a,b;c,d" o con saltos de línea
+  const rows = expanded.split(/[\r\n;]+/).map(r => r.trim()).filter(Boolean);
   if (!rows.length) throw new Error("Formato de matriz inválido");
   const mat = rows.map((r, i) => {
-    const cols = r.split(",").map(c => parseFloat(c.trim()));
-    if (cols.some(x => isNaN(x))) throw new Error(`Valor no numérico en fila ${i+1}`);
+    const cols = r.split(",").map(c => {
+      const num = parseFloat(c.trim());
+      if (isNaN(num)) throw new Error(`Valor no numérico en fila ${i+1}`);
+      return num;
+    });
     return cols;
   });
   // chequear dimensiones
@@ -43,10 +71,14 @@ function parseMatrixFlexible(text) {
 function parseVectorFlexible(text) {
   if (!text || !text.trim()) throw new Error("Vector vacío");
   text = text.trim();
+
+  // expandir fracciones
+  const expanded = expandFractionsInText(text);
+
   // JSON
   try {
-    if (text.startsWith("[")) {
-      const parsed = JSON.parse(text);
+    if (expanded.startsWith("[")) {
+      const parsed = JSON.parse(expanded);
       if (!Array.isArray(parsed)) throw new Error("Vector JSON inválido");
       if (parsed.some(x => typeof x !== 'number' || isNaN(x))) throw new Error("Vector contiene valores inválidos");
       return math.matrix(parsed);
@@ -54,8 +86,8 @@ function parseVectorFlexible(text) {
   } catch (e) {
     // fallback
   }
-  // "a,b,c"
-  const parts = text.split(",").map(x => parseFloat(x.trim()));
+  // "a,b,c" o con espacios
+  const parts = expanded.split(",").map(x => parseFloat(x.trim()));
   if (parts.some(x => isNaN(x))) throw new Error("Vector contiene valores no numéricos");
   return math.matrix(parts);
 }
