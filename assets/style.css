@@ -23,6 +23,72 @@ body {
   min-height: 100vh;
 }
 
+/* --- Layout: centrar contenido y mejorar responsividad --- */
+.home-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 20px;
+  min-height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;       /* centra horizontalmente */
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+/* Título y subtítulo centrados y con límites de ancho */
+h1 {
+  width: 100%;
+  text-align: center;
+  margin: 0 0 8px 0;
+  font-size: 2.6rem;
+  line-height: 1.02;
+}
+
+.subtitle {
+  width: 100%;
+  max-width: 920px;
+  text-align: center;
+  margin: 0 auto 18px auto;
+  color: rgba(0,0,0,0.7);
+  font-size: 1.05rem;
+}
+
+/* Tarjetas centradas y grid flexible */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 320px));
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* tarjetas ocupen su máximo y se vean consistentes */
+.card {
+  width: 100%;
+  max-width: 320px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+/* Ajustes de texto dentro de la tarjeta para verse bien en móviles */
+.card h2 { font-size: 1.15rem; }
+.card p { font-size: 0.95rem; color: rgba(0,0,0,0.65); }
+
+/* Espaciado en paneles interiores (markov/colas) */
+.app-page .panel {
+  max-width: 900px;
+  margin: 28px auto;
+  padding: 22px;
+}
+
+/* Botones centrados en pantallas pequeñas */
+button {
+  display: inline-block;
+  min-width: 160px;
+}
+
 /* Título principal con texto en degradado */
 h1 {
   font-size: 2.5rem;
@@ -193,6 +259,15 @@ button:active { transform: translateY(1px) scale(.995); }
 
 /* Pequeños ajustes responsivos */
 @media (max-width: 720px) {
-  .cards { gap: 0.8rem; }
-  .card { width: 100%; border-radius: 14px; }
+  h1 { font-size: 1.7rem; text-align: center; }
+  .subtitle { font-size: 0.98rem; padding: 0 8px; }
+  .home-container { padding: 28px 12px; min-height: auto; }
+  .cards { gap: 14px; grid-template-columns: 1fr; align-items: stretch; }
+  .card { border-radius: 14px; padding: 14px; }
+}
+
+/* Responsive: pulido para pantallas muy grandes */
+@media (min-width: 1400px) {
+  .home-container { padding: 80px 36px; }
+  h1 { font-size: 3.2rem; }
 }
