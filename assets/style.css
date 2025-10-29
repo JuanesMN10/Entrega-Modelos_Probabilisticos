@@ -246,16 +246,52 @@ button:active { transform: translateY(1px) scale(.995); }
   background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(244,255,244,0.9));
 }
 
-/* Keyframes */
-@keyframes floatIn {
-  from { opacity: 0; transform: translateY(18px) scale(.985); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
+/* Botón "Volver" — estilo similar a los botones de acción */
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.9rem;
+  background: linear-gradient(90deg, var(--btn-start), var(--btn-end));
+  color: #ffffff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 8px 18px rgba(59,130,246,0.12);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
-@keyframes floatSlow {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-6px); }
-  100% { transform: translateY(0); }
+
+/* Micro-interacciones idénticas a los botones */
+.back:hover {
+  transform: translateY(-4px) scale(1.02);
+  filter: brightness(1.03);
+  box-shadow: 0 20px 40px rgba(59,130,246,0.14);
 }
+.back:active {
+  transform: translateY(1px) scale(.995);
+}
+
+/* Centrar título en la topbar y mantener el botón a la izquierda */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: linear-gradient(90deg, var(--verde-start), var(--verde-end));
+  color: white;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  backdrop-filter: blur(6px);
+}
+.topbar h2 {
+  flex: 1;
+  text-align: center;
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+/* Mejor contraste para el link cuando hay poco espacio */
+.topbar .back { white-space: nowrap; }
 
 /* Pequeños ajustes responsivos */
 @media (max-width: 720px) {
