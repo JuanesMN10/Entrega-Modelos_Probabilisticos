@@ -307,3 +307,55 @@ button:active { transform: translateY(1px) scale(.995); }
   .home-container { padding: 80px 36px; }
   h1 { font-size: 3.2rem; }
 }
+
+/* --- Formularios en panel: apilar verticalmente para PC y móvil --- */
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+}
+
+/* Etiquetas encima del control y separación */
+.panel label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* Inputs/textarea/select ocupan todo el ancho disponible (con límite) */
+.panel input,
+.panel select,
+.panel textarea {
+  width: 100%;
+  max-width: 720px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: rgba(255,255,255,0.92);
+  font-size: 1rem;
+  box-shadow: none;
+}
+
+/* Textarea más alto por defecto */
+.panel textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+/* Botón centrado debajo de los inputs, tamaño similar al botón principal */
+.panel button {
+  align-self: center;
+  min-width: 200px;
+  max-width: 360px;
+  width: auto;
+  margin-top: 8px;
+}
+
+/* Ajuste fino en pantallas grandes para no quedar demasiado anchos */
+@media (min-width: 1100px) {
+  .panel input,
+  .panel select,
+  .panel textarea {
+    max-width: 520px;
+  }
+}
