@@ -359,3 +359,34 @@ button:active { transform: translateY(1px) scale(.995); }
     max-width: 520px;
   }
 }
+
+/* Estilos para la tabla de matriz de transición */
+.matrix-table { margin-top: 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.table-wrap { min-width: 320px; }
+.transition { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+.transition th, .transition td {
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 10px 12px;
+  text-align: center;
+}
+.transition thead th {
+  background: rgba(14,116,52,0.12);
+  color: rgba(0,0,0,0.85);
+  font-weight: 700;
+}
+.transition tbody th {
+  text-align: left;
+  padding-left: 14px;
+  background: rgba(240,240,255,0.06);
+  font-weight: 700;
+}
+.transition .initial-row th {
+  background: rgba(243,230,255,0.3);
+}
+.transition td { background: rgba(255,255,255,0.85); }
+
+/* Responsive: reducir padding y tamaño en pantallas pequeñas */
+@media (max-width: 600px) {
+  .transition th, .transition td { padding: 8px; font-size: 0.88rem; }
+  .table-wrap { min-width: 260px; }
+}
