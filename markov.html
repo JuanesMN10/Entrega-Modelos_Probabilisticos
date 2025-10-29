@@ -9,20 +9,17 @@
 <body class="app-page">
   <header class="topbar">
     <a href="index.html" class="back">← Volver al inicio</a>
-    <h2>🧩 Cadenas de Markov</h2>
+    <h2> CADENAS DE MARKOV</h2>
   </header>
 
   <section class="panel fade-in">
     <p>
       Introduce la <strong>matriz de transición</strong> y el <strong>vector inicial</strong>.
-      Ejemplos válidos (JSON o formato corto): matriz <code>[[0.7,0.3],[0.2,0.8]]</code> o con fracciones <code>[[3/4,1/4],[1/5,4/5]]</code>. Vector: <code>[1,0]</code> o <code>[1/1,0/1]</code>.
+      Ejemplos válidos: matriz <code>[[0.7,0.3],[0.2,0.8]]</code> o con fracciones <code>[[3/4,1/4],[1/5,4/5]]</code>. Vector Inicial: <code>[1,0]</code> o <code>[1/1,0/1]</code>.
     </p>
 
     <label>Matriz de transición:</label>
     <textarea id="matriz" rows="3" placeholder="Ej: [[3/4,1/4],[1/5,4/5]] ó [[0.7,0.3],[0.2,0.8]]"></textarea>
-
-    <!-- Contenedor donde se mostrará la tabla con la matriz y el estado inicial -->
-    <div id="matrixTable" class="matrix-table" aria-live="polite"></div>
 
     <label>Vector inicial:</label>
     <input id="vector" placeholder="Ej: [1,0]">
