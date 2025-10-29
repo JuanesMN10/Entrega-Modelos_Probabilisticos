@@ -8,16 +8,16 @@
 </head>
 <body class="app-page">
   <header class="topbar">
-    <a href="index.html" class="back">INICIO</a>
+    <a href="index.html" class="back">← Volver al inicio</a>
     <h2> CADENAS DE MARKOV</h2>
   </header>
 
   <section class="panel fade-in">
     <p>
       Introduce la <strong>matriz de transición</strong> y el <strong>vector inicial</strong>.
+                               <code>                     </code>                  <code>                     </code>.                 <code>     </code> o <code>         </code>.
+    </p>
 
-    
-      <p>
     <label>Matriz de transición:</label>
     <textarea id="matriz" rows="3" placeholder="Ej: [[3/4,1/4],[1/5,4/5]] ó [[0.7,0.3],[0.2,0.8]]"></textarea>
 
@@ -27,7 +27,7 @@
     <label>Número de pasos:</label>
     <input id="pasos" type="number" value="10">
 
-    <button onclick="calcularMarkov()">CALCULAR</button>
+    <button onclick="calcularMarkov()">Calcular evolución</button>
 
     <div id="output" class="output"></div>
 
